@@ -7,6 +7,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ["dayjs"],
+      output: {
+        globals: {
+          dayjs: "dayjs",
+        },
+      },
     },
   },
 });
