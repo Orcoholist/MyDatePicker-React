@@ -35,17 +35,28 @@ export default function Calendar() {
     <Holiday clicked_day={clicked_day} />;
   };
 
-  const handlePlus = (prev) => {
-    setToday(today.month(today.month() + 1));
-    setSelectMonth(months_list[today.month()]);
-    console.log(selectMonth);
+  // const handlePlus = (prev) => {
+  //   setToday(today.month(today.month() + 1));
+  //   setSelectMonth(months_list[today.month()]);
+  //   console.log(selectMonth);
+  // };
+    // const handleMinus = () => {
+  //   setToday(today.month(today.month() - 1));
+  //   setSelectMonth(months_list[today.month()]);
+  //   console.log(selectMonth);
+  // };
+  const handlePlus = () => {
+    const newToday = today.add(1, 'month');
+    setToday(newToday);
+    setSelectMonth(months_list[newToday.month()]);
+  };
+  const handleMinus = () => {
+    const newToday = today.subtract(1, 'month');
+    setToday(newToday);
+    setSelectMonth(months_list[newToday.month()]);
   };
 
-  const handleMinus = () => {
-    setToday(today.month(today.month() - 1));
-    setSelectMonth(months_list[today.month()]);
-    console.log(selectMonth);
-  };
+
 
   return (
     <div className="body">
@@ -70,17 +81,20 @@ export default function Calendar() {
               src={arrowDown}
               className="arrow__down"
               alt="arrowDown"
-              onClick={() => {
-                handleMinus();
-              }}
+              onClick={handleMinus}
+              // onClick={() => {
+              //   handleMinus();
+              // }}
             />
             <img
               src={arrowUp}
               className="arrow__up"
               alt="arrowUp"
-              onClick={() => {
-                handlePlus();
-              }}
+              onClick={handlePlus}
+
+              // onClick={() => {
+              //   handlePlus();
+              // }}
             />
           </div>
         </div>
@@ -130,6 +144,7 @@ export default function Calendar() {
               )}
             </div>
           </>
+            
         ) : (
           <>
             <div className="select-month">
