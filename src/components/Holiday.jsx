@@ -1,19 +1,11 @@
-// https://rapidapi.com/theapiguy/api/public-holiday
-
 import React from "react";
-import HolidaysService from "./util/HolidaysService";
+import getPublicHolidays from "./util/HolidaysService";
 
-// const year = 2023;
-// const key = "eVYpZKSeWr7nvd7spARYWA==2fFJEQ8f8tYzm4qc";
-// const country = "RU"
-// const url = `https://api.api-ninjas.com/v1/holidays?country=
-// ${country}&year=${year}&type=public_holiday`;
 
-export default function Holiday(clicked_day) {
-  // const day = holyData.date;
-  {
-    // console.log("Это день", clicked_day);
-  }
+export default function Holiday(clickedDate) {
+  console.log(clickedDate)
+  let result = getPublicHolidays(clickedDate);
+  console.log(result);
   return (
     <div>
       {holyData.map((item, index) => {

@@ -1,21 +1,17 @@
-export default class HolidaysService {
-    static async get_all() {
-      const url = "https://public-holiday.p.rapidapi.com/2019/US";
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": "fa8a3a8ab5msh019e42a576fea46p11e26cjsn89dc17f8a7f2",
-          "X-RapidAPI-Host": "public-holiday.p.rapidapi.com"
-        }
-      };
-  
-      const response = fetch(url, options);
-      const result = response.text();
-      console.log(result);
-      return result;
-    }
-    catch(error) {
-      console.error(error);
+async function getPublicHolidays(date) {
+    const countryCode = "RU"
+    const url = `https://date.nager.at/Api/v2/PublicHolidays/${date}/${countryCode}`;
+  console.log(date);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const holidays = await response.json();
+      return holidays;
+    } catch (error) {
+      console.error('There was a problem fetching the holidays:', error);
     }
   }
-  
+
+  export default getPublicHolidays

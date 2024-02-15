@@ -31,8 +31,13 @@ export default function Calendar() {
   };
 
   const handleClickedDay = (innerText) => {
-    const clicked_day = innerText;
-    <Holiday clicked_day={clicked_day} />;
+    const currentMonthIndex = today.month();
+    const currentYear = today.year();
+
+    const clickedDate = currentYear+'-'+currentMonthIndex+'-'+innerText
+    console.log("clicked_day: ", clickedDate);
+    
+    <Holiday clickedDate={clickedDate} />;
   };
 
   // const handlePlus = (prev) => {
@@ -49,11 +54,13 @@ export default function Calendar() {
     const newToday = today.add(1, 'month');
     setToday(newToday);
     setSelectMonth(months_list[newToday.month()]);
+    
   };
   const handleMinus = () => {
     const newToday = today.subtract(1, 'month');
     setToday(newToday);
     setSelectMonth(months_list[newToday.month()]);
+    
   };
 
 
